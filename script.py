@@ -9,11 +9,12 @@ def ping_ip(ip):
         return result.returncode == 0
     except Exception as e:
         return False
+def download_proxy(url):
+    response=requests.get(url)
+    return response.text.splitlines()
 
 def get_mullvad_proxy():
-    url="https://raw.githubusercontent.com/maximko/mullvad-socks-list/list/socks-ipv4_in-list.txt"
-    response=requests.get(url)
-    lines=response.text.splitlines()
+    lines=download_proxy("https://raw.githubusercontent.com/maximko/mullvad-socks-list/list/socks-ipv4_in-list.txt")
     ip_pattern=re.compile(r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b')
     ips=[]
     for line in lines:
@@ -21,19 +22,30 @@ def get_mullvad_proxy():
         if match:
             ip = match.group()
             if ping_ip(ip):
-                ips.append(ip)
+                ips.append(ip+":1080")
     return ips
 
 def get_perso_proxy():
-    print(f"Le fichiers doit contenir 1 IP par ligne, et doit être accésible directement via une URL (Vous pouvez utiliser https://litterbox.catbox.moe/ pour heberger temporairement la liste)\n")
-    url=input("URL du fichier\n")
-    response^=requests.get(url)
-    lines=response.text.splitlines()
+    print(f"Le fichiers doit contenir 1 IP par ligne, et doit être accésible directement via une URL (Vous pouvez utiliser https://litterbox.catbox.moe/ pour heberger temporairement la liste)\n UNIQUEMENT DES SOCKS5 PROXY")
+    lines=download_proxy(input("URL du fichier\n"))
     ips=[]
     for line in lines:
-        if ping_ip(line):
+        if ping_ip(line.split(":")[0]):
             ips.append(line)
     return ips
+
+def get_public_proxy():
+    lines=download_proxy("https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt")
+    lines2=download_proxy("https://github.com/monosans/proxy-list/raw/main/proxies/socks5.txt")
+    for proxy in lines2:
+        if proxy not in lines:
+            lines.append(proxy)
+    
+    ips=[]
+    for line in lines:
+        if ping_ip(line.split(":")[0]):
+            ips.append(line)
+        return ips
 
 def menu_choose_proxy():
     print("|"+"-"*22+"|")
@@ -50,7 +62,7 @@ def choose_proxy():
     if choix == "1":
         return get_mullvad_proxy()
     elif choix == "2":
-        return get_public_proxy() #Non implémentais
-    elif choix == "3":
+        return get_public_proxy()
+    elif choix == "3": 
         return get_perso_proxy()
 print(choose_proxy())
