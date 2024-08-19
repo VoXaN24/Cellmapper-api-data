@@ -1,4 +1,3 @@
 Ooredoo,603:3
 Djezzy,603:2
-Mobilis,603:1
-Algerie Telecom (Mobilis),603:9
+Mobilis,603:1,603:9

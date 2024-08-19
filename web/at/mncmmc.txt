@@ -1,0 +1,7 @@
+A1,232:1
+3,232:5,232:10
+Magenta,232:3
+Stadtwerke Salzburg,232:21
+LiWest (Magenta),232:6
+Holding Graz,232:25
+spusu (Magenta),232:17

@@ -1,0 +1,3 @@
+Vivacell MTS,283:5
+Orange (Ucell),283:10
+Beeline,283:1
