@@ -1,15 +1,4 @@
-British Virgin Islands.vg
-Brunei.bn
-Bulgaria.bg
-Burkina Faso.bf
-Burundi.bi
-Cambodia.kh
-Cameroon.cm
-Canada.ca
-Cape Verde.cv
-Cayman Islands.ky
-Central African Republic.cf
-Chad.td
+#List of country to included in the DB
 Chile.cl
 China.cn
 Colombia.co
