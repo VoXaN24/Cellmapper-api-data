@@ -1,0 +1,5 @@
+AREEBA,412:40
+Roshan,412:20
+Salaam,412:80
+AWCC,412:1
+Etisalat,412:50
