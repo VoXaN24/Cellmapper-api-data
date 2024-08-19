@@ -1,31 +1,3 @@
-Abkhazia.absu
-Afghanistan.af
-Albania.al
-Algeria.dz
-Andorra.ad
-Angola.ao
-Anguilla.ai
-Antigua and Barbuda.ag
-Argentina.ar
-Armenia.am
-Aruba.aw
-Australia.au
-Austria.at
-Azerbaijan.az
-Bahamas.bs
-Bahrain.bh
-Bangladesh.bd
-Barbados.bb
-Belarus.by
-Belgium.be
-Belize.bz
-Benin.bj
-Bermuda.bm
-Bhutan.bt
-Bolivia.bo
-Bosnia and Herzegovia.ba
-Botswana.bw
-Brazil.br
 British Virgin Islands.vg
 Brunei.bn
 Bulgaria.bg
@@ -132,7 +104,7 @@ Myanmar.mm
 Namibia.na
 Nepal.np
 Netherlands.nl
-Netherlands Antilles
+Netherlands Antilles.an
 New Caledonia.nc
 New Zealand.nz
 Nicaragua.ni
@@ -144,7 +116,7 @@ Oman.om
 Pakistan.pk
 Panama.pa
 Papua New Guinea.pg
-Paraguay
+Paraguay.py
 Peru.pe
 Philippines.ph
 Poland.pl
