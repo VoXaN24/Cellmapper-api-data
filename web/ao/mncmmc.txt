@@ -1,3 +1,0 @@
-UNITEL,631:2,631:8
-Movicel,631:4
-Africell,631:5

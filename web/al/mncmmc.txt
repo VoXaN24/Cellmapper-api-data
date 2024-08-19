@@ -1,3 +1,0 @@
-Vodafone,276:2
-One,276:1
-One (AlbTelecom),276:3
