@@ -1,13 +1,3 @@
-#List of country to included in the DB
-Chile.cl
-China.cn
-Colombia.co
-Comoros.km
-Cook Islands.ck
-Costa Rica.cr
-Croatia.hr
-Cuba.cu
-Cyprus.cy
 Czech Republic.cz
 Democratic Republic of the Congo.cd
 Denmark.dk

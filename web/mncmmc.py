@@ -1,5 +1,6 @@
 import json
-
+with open("country_name.txt", "r") as file:
+    country_name_list = file.read().splitlines()
 # Load data from file
 with open('temp_json.json', 'r') as file:
     data = json.load(file)
@@ -16,8 +17,7 @@ def modify_provider_name(name):
     return modified_name
 
 def generate_network_inserts(country_name, contry_code):
-    list_of_networks = []
-    
+      
     # Ensure the country exists in the data
     if country_name in data['responseData']:
         providers = data['responseData'][country_name]
@@ -37,14 +37,20 @@ def generate_network_inserts(country_name, contry_code):
             )
     else:
         print(f"No data available for country: {country_name}")
+        no_data.append(country_name)
     
     return list_of_networks
 
 # Example usage
-country_name = "Colombia"  # Replace with the country you want to process
-country_code = "co"  # Replace with the country code
-network_inserts = generate_network_inserts(country_name, country_code)
-
+no_data = []
+list_of_networks = []
+for i in range(len(country_name_list)):
+    print(f"Processing country: {country_name_list[i].split(".")[0]}")
+    country_name = country_name_list[i].split(".")[0]  # Replace with the country you want to process
+    country_code = country_name_list[i].split(".")[1].strip() # Replace with the country code
+    network_inserts = generate_network_inserts(country_name, country_code)
 # Print the results
 for insert_statement in network_inserts:
     print(insert_statement)
+input("Press Enter to exit...")
+print(f"No data available for the following countries: {no_data}")
