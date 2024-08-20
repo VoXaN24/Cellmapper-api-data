@@ -22,7 +22,7 @@ if ($countryParam === 'all') {
     echo json_encode($countries);
 } else {
     // Query the database to get the abbreviation of the specified country
-    $query = "SELECT abbreviation FROM country WHERE name = :country";
+    $query = "SELECT abv FROM country WHERE name = :country";
     $stmt = $db->prepare($query);
     $stmt->bindValue(':country', $countryParam, SQLITE3_TEXT);
     $result = $stmt->execute();
