@@ -3,9 +3,9 @@ def add_new():
     try:
         country_code=input("Enter country code: ")
         name=input("Enter network name: ")
-        mnc=int(input("Enter MNC: "))
         mmc=int(input("Enter MMC: "))
-        list_of_networks.append(f'INSERT INTO mmcmnc_cellmapper (country_code, network_name, mnc, mmc) VALUES ("{country_code}", "{name}", {mnc}, {mmc});')
+        mnc=int(input("Enter MNC: "))
+        list_of_networks.append(f'INSERT INTO mmcmnc_cellmapper (country_code, network_name, mmc, mnc) VALUES ("{country_code}", "{name}", {mmc}, {mnc});')
         add_new()
     except:
         print("Invalid input")
