@@ -6,6 +6,9 @@ $db = new SQLite3('db.db');
 // Get the value of the "country" parameter from the request
 $countryParam = $_GET['country'];
 
+// Get the value of the "cellmapper" parameter from the request
+$cellmapperParam = $_GET['cellmapper'];
+
 // Check if the "country" parameter is set to "all"
 if ($countryParam === 'all') {
     // Query the database to get all countries and their abbreviations
@@ -36,8 +39,28 @@ if ($countryParam === 'all') {
         echo json_encode($row['abv']);
     } else {
         // Return an error message if the country was not found
+        if ($countryParam) {
         echo json_encode(['error' => 'Country not found']);
+        }
     }
+}
+
+// Check if the "cellmapper" parameter is set
+if ($cellmapperParam) {
+    // Query the database to get the networks with the specified abbreviation
+    $query = "SELECT network_name, mmc, mnc FROM mmcmnc_cellmapper WHERE country_code = :abv";
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':abv', $cellmapperParam, SQLITE3_TEXT);
+    $result = $stmt->execute();
+
+    // Fetch the results and store them in an array
+    $networks = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $networks[] = $row;
+    }
+
+    // Return the networks as JSON
+    echo json_encode($networks);
 }
 
 // Close the database connection
