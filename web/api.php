@@ -33,7 +33,7 @@ if ($countryParam === 'all') {
     // Check if a result was found
     if ($row) {
         // Return the abbreviation as JSON
-        echo json_encode($row['abbreviation']);
+        echo json_encode($row['abv']);
     } else {
         // Return an error message if the country was not found
         echo json_encode(['error' => 'Country not found']);
