@@ -10,3 +10,4 @@ def create_list_gps_coordonates():
         print("Unvalid value")
         for i in list_gps:
             print(i)
+create_list_gps_coordonates()
