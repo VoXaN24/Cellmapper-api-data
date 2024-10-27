@@ -1,7 +1,9 @@
 import re
 import subprocess
 import requests
+import math
 
+proxy=[]
 #Utilisation de MullVad comme Proxy (Nécéssite un abonement + être connecter au VPN)
 def ping_ip(ip):
     try:
@@ -91,11 +93,27 @@ def get_network_data():
     mnc=input("MNC: ")
     print("Type de réseau: ")
     print("0 - GSM")
-    print("1 - WCDMA")
+    print("1 - 3G/UMTS/HSPA")
     print("2 - LTE")
     print("3 - NR")
     network_type=input()
     return mmc,mnc,network_type
+
+def get_data(latNE,longNE,latSW,longSW,mmc,mnc,network_type):
+    if network_type == "0":
+        nt="GSM"
+    elif network_type == "1":
+        nt="UMTS"
+    elif network_type == "2":
+        nt="LTE"
+    elif network_type == "3":
+        nt="NR"
+    url=f"https://api.cellmapper.net/v6/getTowers?MCC={mmc}&MNC={mnc}&RAT={nt}&boundsNELatitude={LatNE}&boundsNELongitude={longNE}&boundsSWLatitude={latSW}&boundsSWLongitude={longSW}&filterFrequency=false&showOnlyMine=false&showUnverifiedOnly=false&showENDCOnly=false"
+    prox=proxy[math.random(len(proxy))]
+    response=requests.get(url,proxies={"https":prox})
+    return response.text
+    
+    
 
 def main():
     print("Choix du Proxy")
