@@ -79,5 +79,12 @@ def choose_proxy():
 def get_proxy():
     return choose_proxy()
 
+def get_coordonates():
+    latNE=input("Latitude NE: ")
+    longNE=input("Longitude NE: ")
+    latSW=input("Latitude SW: ")
+    longSW=input("Longitude SW: ")
+    return latNE,longNE,latSW,longSW
+
 if __name__ == "__main__":
     print(get_proxy())
