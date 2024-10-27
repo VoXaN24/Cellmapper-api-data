@@ -86,5 +86,17 @@ def get_coordonates():
     longSW=input("Longitude SW: ")
     return latNE,longNE,latSW,longSW
 
+def get_network_data():
+    mmc=input("MMC: ")
+    mnc=input("MNC: ")
+    print("Type de réseau: ")
+    print("0 - GSM")
+    print("1 - WCDMA")
+    print("2 - LTE")
+    print("3 - NR")
+    network_type=input()
+    return mmc,mnc,network_type
+
+
 if __name__ == "__main__":
     print(get_proxy())
