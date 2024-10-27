@@ -97,6 +97,12 @@ def get_network_data():
     network_type=input()
     return mmc,mnc,network_type
 
+def main():
+    print("Choix du Proxy")
+    proxy=choose_proxy()
+    print("Choix des coordonnées")
+    latNE,longNE,latSW,longSW=get_coordonates()
+    print("Choix du réseau + Type de réseau")
 
 if __name__ == "__main__":
-    print(get_proxy())
+    main()
