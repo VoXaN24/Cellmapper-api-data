@@ -108,8 +108,8 @@ def get_data(latNE,longNE,latSW,longSW,mmc,mnc,network_type):
         nt="LTE"
     elif network_type == "3":
         nt="NR"
-    url=f"https://api.cellmapper.net/v6/getTowers?MCC={mmc}&MNC={mnc}&RAT={nt}&boundsNELatitude={LatNE}&boundsNELongitude={longNE}&boundsSWLatitude={latSW}&boundsSWLongitude={longSW}&filterFrequency=false&showOnlyMine=false&showUnverifiedOnly=false&showENDCOnly=false"
-    prox=proxy[math.random(len(proxy))]
+    url=f"https://api.cellmapper.net/v6/getTowers?MCC={mmc}&MNC={mnc}&RAT={nt}&boundsNELatitude={latNE}&boundsNELongitude={longNE}&boundsSWLatitude={latSW}&boundsSWLongitude={longSW}&filterFrequency=false&showOnlyMine=false&showUnverifiedOnly=false&showENDCOnly=false"
+    prox=proxy[math.random(0,len(proxy))]
     response=requests.get(url,proxies={"https":prox})
     return response.text
     
