@@ -82,6 +82,26 @@ def choose_proxy():
 def get_proxy():
     return choose_proxy()
 
+def get_adress(lat,lon):
+    url = f'https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}' #Use OpenStreetMap API
+    response = requests.get(url)
+    data = response.json()
+    adr=f""
+    if 'house_number' in data['address']:
+        adr+=data["address"]["house_number"]+', '
+    if 'road' in data['address']:
+        adr+=data["address"]["road"]+', '
+    if 'isolated_dwelling' in data['address']:
+        adr+=data["address"]["isolated_dwelling"]+', '
+    if 'village' in data['address']:
+        if 'city' in data['address']:
+            if data['address']["city"] != data["address"]["village"]:
+                adr+=data["address"]["village"]+', '
+    if 'postcode' in data["address"]:
+        adr+="L-"+data["address"]["postcode"]+' '
+    if 'city' in data['address']:
+        adr+=data['address']['city']+', '
+    return adr
 def get_coordonates():
     latNE=input("Latitude NE: ")
     longNE=input("Longitude NE: ")
@@ -112,14 +132,14 @@ def get_data(latNE,longNE,latSW,longSW,mmc,mnc,network_type):
     url=f"https://api.cellmapper.net/v6/getTowers?MCC={mmc}&MNC={mnc}&RAT={nt}&boundsNELatitude={latNE}&boundsNELongitude={longNE}&boundsSWLatitude={latSW}&boundsSWLongitude={longSW}&filterFrequency=false&showOnlyMine=false&showUnverifiedOnly=false&showENDCOnly=false"
     prox=proxy[math.random(0,len(proxy))]
     response=requests.get(url,proxies={"https":prox})
-    return response.text
+    return response.json()
 
-def check_data(data):
-    json_data=json.loads(data)
-    if "hasmore" in json_data:
+def check_data_hasmore(data):
+    if "hasmore" in data:
         return True
     else:
         return False
+
 
     
 
