@@ -2,6 +2,7 @@ import re
 import subprocess
 import requests
 import math
+import json
 
 proxy=[]
 #Utilisation de MullVad comme Proxy (Nécéssite un abonement + être connecter au VPN)
@@ -112,7 +113,14 @@ def get_data(latNE,longNE,latSW,longSW,mmc,mnc,network_type):
     prox=proxy[math.random(0,len(proxy))]
     response=requests.get(url,proxies={"https":prox})
     return response.text
-    
+
+def check_data(data):
+    json_data=json.loads(data)
+    if "hasmore" in json_data:
+        return True
+    else:
+        return False
+
     
 
 def main():
