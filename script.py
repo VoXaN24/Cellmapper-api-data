@@ -98,7 +98,7 @@ def get_adress(lat,lon):
             if data['address']["city"] != data["address"]["village"]:
                 adr+=data["address"]["village"]+', '
     if 'postcode' in data["address"]:
-        adr+="L-"+data["address"]["postcode"]+' '
+        adr+=data["address"]["postcode"]+' '
     if 'city' in data['address']:
         adr+=data['address']['city']+', '
     return adr
